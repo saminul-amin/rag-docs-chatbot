@@ -4,7 +4,7 @@ Upload PDFs, Word files or text, then ask questions in plain English. AskDocs an
 **only from your documents**, and every claim links to the exact passage (and page)
 it came from, so you can check the answer instead of trusting it.
 
-**Live demo:** _LIVE_URL_ · Three sample documents are preloaded, so you can try it
+**Live demo:** [rag-docs-chatbot-pi.vercel.app](https://rag-docs-chatbot-pi.vercel.app) · Three sample documents are preloaded, so you can try it
 without uploading anything.
 
 ![AskDocs answering a question with cited sources](docs/screenshots/01-cited-answer.png)
