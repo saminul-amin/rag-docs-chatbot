@@ -5,6 +5,7 @@ import { AppError, errorResponse } from "@/lib/errors";
 import { extractiveAnswer } from "@/lib/extractive";
 import { limitChat } from "@/lib/rate-limit";
 import { retrieve, type Passage } from "@/lib/retrieve";
+import { ensureSamples } from "@/lib/samples";
 import { getWorkspace } from "@/lib/workspace";
 
 export const maxDuration = 60;
@@ -66,6 +67,9 @@ export async function POST(req: Request) {
     async start(controller) {
       const send = (e: Event) => controller.enqueue(encoder.encode(JSON.stringify(e) + "\n"));
       try {
+        // A fresh server instance may get a question before it has served the
+        // document list, so make sure the samples are there (a no-op after the first call).
+        await ensureSamples();
         const ids = await allowedDocumentIds(workspace, input.documentIds);
         if (ids.length === 0) {
           send({ type: "sources", sources: [] });

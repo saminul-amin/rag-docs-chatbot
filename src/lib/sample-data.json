@@ -1,0 +1,93 @@
+[
+ {
+  "name": "Aria Espresso Machine Manual.pdf",
+  "mime": "application/pdf",
+  "pageCount": 3,
+  "chunks": [
+   {
+    "idx": 0,
+    "page": 1,
+    "content": "Aria Home Espresso Machine: User Manual\nModel KW-ARIA-2. Sold by Kettlewick Coffee Co., a fictional company used for demonstration.\n1. Specifications\n• Pump pressure: 15 bar (extraction runs at 9 bar)\n• Water tank: 1.8 litres, removable\n• Heat-up time: about 45 seconds with the thermoblock\n• Power: 1,450 W, 220 to 240 V\n• Weight: 6.2 kg\n2. First use\nRinse the water tank and fill it with fresh, cold water. Plug in the machine and press the power button.\nBefore your first coffee, run two full tanks of water through the group head and the steam wand to flush the system. This removes any residue from manufacturing.\n3. Making an espresso\n• Use 18 g of finely ground coffee in the double basket.\n• Tamp evenly with about 15 kg of pressure.\n• Lock the portafilter and press the double-shot button.\n• Aim for 36 g of espresso in 25 to 30 seconds. Grind finer if it runs fast, coarser if it runs slow."
+   },
+   {
+    "idx": 1,
+    "page": 2,
+    "content": "4. Descaling\nDescale the Aria every 2 months, or after 300 shots, whichever comes first. In hard-water areas, descale monthly. When descaling is due, the cup icon blinks orange.\n• Empty the water tank and add 500 ml of water mixed with one sachet of Kettlewick descaler.\n• Place a 1-litre container under the group head and steam wand.\n• Hold the power and steam buttons together for 5 seconds to start the descaling cycle.\n• The cycle takes about 20 minutes. Rinse the tank and run one full tank of clean water afterwards.\nDo not use vinegar. It can damage the seals and is not covered by the warranty.\n5. Daily cleaning\nPurge and wipe the steam wand after every use. Rinse the portafilter and baskets daily. Empty the drip tray when the red float rises. Once a week, backflush the group head with the blind basket."
+   },
+   {
+    "idx": 2,
+    "page": 3,
+    "content": "6. Error codes\nCode Meaning What to do\nE01 Water tank empty or not seated Refill the tank and press it down firmly until it clicks.\nE02 Boiler overheating Switch off and let the machine cool for 30 minutes. If it repeats, contact support.\nE03 Pump blocked or air in the system Run the steam wand for 10 seconds, then try again. Descale if it persists.\nE04 Grinder or portafilter jam Remove the portafilter, check for over-tamped coffee, and clean the shower screen.\nE05 Temperature sensor fault Not user-serviceable. Contact support for a warranty repair.\nE06 Descaling overdue Run the descaling cycle in section 4. The machine stays usable for 50 more shots.\n7. Warranty"
+   },
+   {
+    "idx": 3,
+    "page": 3,
+    "content": "E06 Descaling overdue Run the descaling cycle in section 4. The machine stays usable for 50 more shots.\n7. Warranty The Aria has a 2-year limited warranty from the date of purchase, covering defects in materials and workmanship. Registering the machine within 30 days extends the warranty to 3 years. The warranty does not cover damage from scale build-up, vinegar, commercial use, or repairs by unauthorised technicians. See the Returns and Warranty Policy for how to file a claim."
+   }
+  ]
+ },
+ {
+  "name": "Kettlewick Employee Handbook.pdf",
+  "mime": "application/pdf",
+  "pageCount": 4,
+  "chunks": [
+   {
+    "idx": 0,
+    "page": 1,
+    "content": "Kettlewick Coffee Co. Employee Handbook\nVersion 4.2, effective 1 March 2026. Kettlewick Coffee Co. is a fictional company used for demonstration.\n1. Welcome\nKettlewick roasts specialty coffee in small batches and sells it through our online store, three cafes and a wholesale programme for restaurants. This handbook explains how we work, what you can expect from us and what we expect from you. If anything here is unclear, ask your manager or email the People team at people@kettlewick.example.\n2. Working hours and remote work\nOur core hours are 10:00 to 15:00 local time, Monday to Friday. Outside core hours you can arrange your day as you like, as long as you work your contracted hours (usually 40 per week).\nOffice and roastery staff may work remotely up to three days per week. Cafe and roastery production roles are on-site by nature; their schedules are published two weeks in advance. Fully remote arrangements need written approval from your department head.\n3. Home office stipend"
+   },
+   {
+    "idx": 1,
+    "page": 1,
+    "content": "Fully remote arrangements need written approval from your department head.\n3. Home office stipend Employees who work remotely at least one day per week receive a one-time home office stipend of $600 in their first 90 days, plus $150 per year after that for upkeep. Equipment bought with the stipend is yours to keep."
+   },
+   {
+    "idx": 2,
+    "page": 2,
+    "content": "4. Paid time off\nFull-time employees receive 15 days of paid vacation per year during their first three years. From the start of year four, this rises to 20 days per year. Part-time employees receive vacation in proportion to their contracted hours.\nVacation accrues monthly. You can carry over up to 5 unused days into the next calendar year; any additional unused days expire on 31 March. Request vacation in the HR portal at least two weeks ahead for anything longer than three days.\nIn addition, everyone gets 8 paid sick days per year. Sick days do not carry over. For absences longer than three consecutive days, we ask for a doctor's note.\nKettlewick observes 10 public holidays per year. Cafe staff who work on a public holiday are paid 1.5 times their normal rate and receive a replacement day off.\n5. Parental leave"
+   },
+   {
+    "idx": 3,
+    "page": 2,
+    "content": "Cafe staff who work on a public holiday are paid 1.5 times their normal rate and receive a replacement day off.\n5. Parental leave Primary caregivers receive 16 weeks of fully paid parental leave. Secondary caregivers receive 6 weeks of fully paid leave. Leave can be taken any time within 12 months of a birth or adoption, and can be split into up to two blocks. You become eligible after six months of employment."
+   },
+   {
+    "idx": 4,
+    "page": 3,
+    "content": "6. Expenses and travel\nKettlewick reimburses reasonable business expenses. Submit receipts through the finance portal within 30 days of the purchase; claims older than 60 days cannot be reimbursed.\n• Meals while travelling: up to $45 per day, including tips.\n• Hotels: up to $180 per night in most cities, $260 per night in New York, London and Tokyo.\n• Flights: economy class for trips under 6 hours; premium economy is allowed for longer flights.\n• Any single expense over $500 needs your manager's approval before you spend it.\n• Alcohol is not reimbursed, except at approved client events.\nReimbursements are paid with the next payroll run after approval, usually within two weeks.\n7. Learning budget\nEach employee has a learning budget of $1,000 per year for courses, books, conferences and certifications related to their role, such as barista or Q Grader certification. Unused budget does not roll over."
+   },
+   {
+    "idx": 5,
+    "page": 4,
+    "content": "8. Your first week\n• Day 1: laptop and accounts setup, a welcome coffee tasting with the founders.\n• Day 2: safety training at the roastery (required for all staff, including remote roles).\n• Days 3 to 4: shadow a teammate and meet your onboarding buddy.\n• Day 5: 30-day goals agreed with your manager.\nEvery new hire has a 90-day probation period. You and your manager will hold check-ins at 30, 60 and 90 days.\n9. Code of conduct\nTreat colleagues, customers and suppliers with respect. Harassment and discrimination of any kind are not tolerated. Report concerns to your manager, the People team, or anonymously through the ethics line. Retaliation against anyone who raises a concern in good faith is itself a serious violation.\n10. Staff discount\nEmployees get 40% off coffee and equipment in our online store and cafes, and one free bag of coffee (up to 340 g) per week."
+   }
+  ]
+ },
+ {
+  "name": "Returns and Warranty Policy.md",
+  "mime": "text/markdown",
+  "pageCount": 0,
+  "chunks": [
+   {
+    "idx": 0,
+    "page": null,
+    "content": "# Kettlewick Coffee Co. Customer Returns and Warranty Policy\n\n_Kettlewick Coffee Co. is a fictional company used for demonstration. Last updated 15 January 2026._\n\n## Returns on equipment\n\nYou can return unused equipment (grinders, espresso machines, kettles, brewers) within **30 days** of delivery for a full refund. Items must be in their original packaging with all accessories.\n\nOpened or used equipment can be returned within 30 days for a refund minus a **15% restocking fee**, as long as it is clean and undamaged.\n\nReturn shipping is free for orders over $75 in the continental US. For smaller orders, we deduct a $9.95 return label fee from your refund.\n\n## Returns on coffee\n\nBecause coffee is a food product, we can't accept returns of opened bags. If you don't love a coffee, tell us within **14 days** and we'll send you a different coffee of equal value, once per order. Unopened bags can be returned within 30 days."
+   },
+   {
+    "idx": 1,
+    "page": null,
+    "content": "Unopened bags can be returned within 30 days. Subscription coffee can be paused, skipped or cancelled at any time before the next roast date, which is shown in your account. Changes made after the roast date apply to the following shipment.\n\n## Refund timing\n\nRefunds go back to the original payment method within **5 to 7 business days** after we receive and inspect your return. Store credit is issued immediately and includes a 10% bonus.\n\n## Filing a warranty claim\n\n1. Email support@kettlewick.example with your order number, the serial number (under the drip tray) and a short video of the problem.\n2. Our team replies within one business day with troubleshooting steps or a prepaid shipping label.\n3. Repairs take 7 to 10 business days. If we can't repair the machine, we replace it with the same or an equivalent model."
+   },
+   {
+    "idx": 2,
+    "page": null,
+    "content": "3. Repairs take 7 to 10 business days. If we can't repair the machine, we replace it with the same or an equivalent model. Machines registered within 30 days of purchase get a third year of warranty coverage. During any warranty repair longer than 7 days, we lend you a loaner machine on request.\n\n## Damaged or lost deliveries\n\nReport damaged deliveries within **48 hours** with photos of the box and the item. We'll ship a replacement right away at no cost. If tracking shows no movement for 7 days, we treat the parcel as lost and reship it.\n\n## International orders\n\nWe ship to Canada, the UK and the EU. International customers pay return shipping, and import duties are not refundable. Warranty repairs for international customers are handled through our partner service centres; contact support for the nearest one.\n\n## Contact"
+   },
+   {
+    "idx": 3,
+    "page": null,
+    "content": "Warranty repairs for international customers are handled through our partner service centres; contact support for the nearest one.\n\n## Contact Support hours are 8:00 to 18:00 Eastern Time, Monday to Saturday. Live chat is available on the website during those hours, and email replies are sent within one business day."
+   }
+  ]
+ }
+]

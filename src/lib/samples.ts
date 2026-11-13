@@ -1,15 +1,19 @@
-import { readdir, readFile } from "node:fs/promises";
-import path from "node:path";
-import { SAMPLE_WORKSPACE } from "./config";
+import { createHash } from "node:crypto";
+import type { Chunk } from "./chunk";
+import { config, SAMPLE_WORKSPACE } from "./config";
 import { getDb } from "./db";
-import { ingestDocument } from "./documents";
-import { ACCEPTED_EXTENSIONS } from "./parse";
+import { storeDocument } from "./documents";
+import * as mem from "./memory-store";
+import SAMPLES from "./sample-data.json";
 
 // The demo ships with a few sample documents (in /sample-docs) so visitors can try it
-// without uploading anything. They're ingested automatically the first time the app
+// without uploading anything. They're stored automatically the first time the app
 // needs them, so a fresh deployment works with no manual seeding step.
+//
+// The documents are parsed ahead of time (`npm run samples:build` writes
+// sample-data.json), because parsing PDFs on every cold start burns CPU for nothing.
 
-const SAMPLE_DIR = path.join(process.cwd(), "sample-docs");
+const samples = SAMPLES as { name: string; mime: string; pageCount: number; chunks: Chunk[] }[];
 let seeded = false;
 let seeding: Promise<void> | null = null;
 
@@ -25,31 +29,42 @@ export function ensureSamples(): Promise<void> {
   return seeding;
 }
 
+/**
+ * A sample's id is derived from its file name, so every server instance gives the
+ * same document the same id. A browser can then send its selection to any instance.
+ */
+function sampleId(name: string): string {
+  const h = createHash("sha256").update(`askdocs-sample:${name}`).digest("hex");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-5${h.slice(13, 16)}-a${h.slice(17, 20)}-${h.slice(20, 32)}`;
+}
+
 async function seed() {
-  const db = await getDb();
-  const existing = new Set(
-    (await db.query<{ name: string }>(`select name from documents where is_sample`)).map((r) => r.name),
-  );
+  const existing =
+    config.storage === "memory"
+      ? mem.sampleNames()
+      : new Set(
+          (await (await getDb()).query<{ name: string }>(`select name from documents where is_sample`)).map(
+            (r) => r.name,
+          ),
+        );
 
-  let files: string[];
-  try {
-    files = (await readdir(SAMPLE_DIR)).filter((f) =>
-      ACCEPTED_EXTENSIONS.some((ext) => f.toLowerCase().endsWith(ext)),
-    );
-  } catch {
-    return; // no sample folder: nothing to seed
-  }
-
-  for (const file of files.sort()) {
-    if (existing.has(file)) continue;
-    const data = new Uint8Array(await readFile(path.join(SAMPLE_DIR, file)));
+  for (const s of samples) {
+    if (existing.has(s.name)) continue;
     try {
-      await ingestDocument({ workspace: SAMPLE_WORKSPACE, name: file, data, isSample: true });
-      console.log(`[samples] ingested ${file}`);
+      await storeDocument({
+        workspace: SAMPLE_WORKSPACE,
+        name: s.name,
+        mime: s.mime,
+        pageCount: s.pageCount,
+        chunks: s.chunks,
+        isSample: true,
+        id: sampleId(s.name),
+      });
+      console.log(`[samples] loaded ${s.name}`);
     } catch (err) {
       // Another server instance may have seeded the same file at the same moment;
-      // the unique index on sample names makes that safe to ignore.
-      if (String((err as Error).message).includes("documents_sample_name_idx")) continue;
+      // the unique index on sample names (and the fixed id) makes that safe to ignore.
+      if (/documents_sample_name_idx|documents_pkey/.test(String((err as Error).message))) continue;
       throw err;
     }
   }

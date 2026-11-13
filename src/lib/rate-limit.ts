@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { config } from "./config";
 import { getDb } from "./db";
 import { AppError } from "./errors";
+import * as mem from "./memory-store";
 
 // A small Postgres-backed rate limiter. It keeps a public demo from running up an
 // LLM bill: per-IP limits stop one visitor from hammering it, and a global daily
@@ -16,6 +17,11 @@ export function clientKey(req: Request): string {
 }
 
 async function hit(bucket: string, limit: number, windowSeconds: number, message: string) {
+  if (config.storage === "memory") {
+    // Per server instance only, which is still enough to stop one visitor hammering it.
+    if (!mem.rateHit(bucket, limit, windowSeconds)) throw new AppError(message, 429);
+    return;
+  }
   const db = await getDb();
   const [row] = await db.query<{ n: number }>(
     `select count(*)::int as n from rate_events
@@ -53,6 +59,7 @@ export async function limitUpload(req: Request) {
 
 /** Old rate events are only needed for the longest window (one day). */
 export async function pruneRateEvents() {
+  if (config.storage === "memory") return mem.pruneRateEvents();
   const db = await getDb();
   await db.query(`delete from rate_events where created_at < now() - interval '2 days'`);
 }

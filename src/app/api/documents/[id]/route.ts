@@ -2,6 +2,11 @@ import { deleteDocument, UUID_RE } from "@/lib/documents";
 import { AppError, errorResponse } from "@/lib/errors";
 import { getWorkspace } from "@/lib/workspace";
 
+// Same settings as the other API routes, so Vercel bundles all three into one
+// function. Without a database, documents live in that function's memory, and a
+// separately bundled DELETE route would never see the visitor's uploads.
+export const maxDuration = 60;
+
 export async function DELETE(req: Request, ctx: RouteContext<"/api/documents/[id]">) {
   try {
     const workspace = getWorkspace(req);

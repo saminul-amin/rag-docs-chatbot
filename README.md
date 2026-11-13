@@ -4,7 +4,7 @@ Upload PDFs, Word files or text, then ask questions in plain English. AskDocs an
 **only from your documents**, and every claim links to the exact passage (and page)
 it came from, so you can check the answer instead of trusting it.
 
-**Live demo:** [rag-docs-chatbot-pi.vercel.app](https://rag-docs-chatbot-pi.vercel.app) · Three sample documents are preloaded, so you can try it
+**Live demo:** [rag-docs-chatbot-pied.vercel.app](https://rag-docs-chatbot-pied.vercel.app) · Three sample documents are preloaded, so you can try it
 without uploading anything.
 
 ![AskDocs answering a question with cited sources](docs/screenshots/01-cited-answer.png)
@@ -95,7 +95,9 @@ npm run dev                  # http://localhost:3000
 ```
 
 With `DATABASE_URL` left empty, the app uses an embedded PGlite database in `./.data`.
-The sample documents are indexed automatically on first load.
+The sample documents are indexed automatically on first load. They're parsed ahead of
+time into `src/lib/sample-data.json` (`npm run samples:build`, which also runs before
+every build), so the server never re-reads the PDFs.
 
 ```bash
 npm run eval          # 11 test questions: retrieval hit rate + answer checks
@@ -106,7 +108,7 @@ npm run screenshots   # re-shoot docs/screenshots against a running server
 
 ## Deploy to Vercel (free)
 
-1. Import this repo into Vercel and deploy. It works as-is, in passages-only mode, with a temporary database.
+1. Import this repo into Vercel and deploy. It works as-is, in passages-only mode. Without a database, documents are kept in the server's memory (temporary, like any serverless /tmp). This uses very little CPU: an embedded database would cost about 16 s of CPU per cold start, which quickly uses up the Hobby plan's 4 CPU-hours.
 2. For permanent storage, add a free Postgres database: Vercel dashboard → Storage → Neon, connected to the project. That sets `DATABASE_URL`. pgvector is built in, and the app creates its own tables.
 3. For AI answers, add `OPENROUTER_API_KEY` (or `OPENAI_API_KEY`) in Project Settings → Environment Variables, then redeploy.
 

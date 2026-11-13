@@ -1,6 +1,7 @@
 import { embedOne } from "./ai";
 import { config } from "./config";
 import { getDb, toVector } from "./db";
+import * as mem from "./memory-store";
 
 export interface Passage {
   /** Citation number shown to the model and the user: [1], [2], ... */
@@ -60,9 +61,31 @@ export async function searchChunks(
   documentIds: string[],
 ): Promise<Passage[]> {
   const { topK, candidates } = config.retrieval;
-  const db = await getDb();
+  const rows: HitRow[] =
+    config.storage === "memory"
+      ? mem.search(question, embedding, documentIds, candidates, topK)
+      : await sqlSearch(question, embedding, documentIds, candidates, topK);
 
-  const rows = await db.query<HitRow>(
+  return rows.map((r, i) => ({
+    n: i + 1,
+    chunkId: String(r.id),
+    documentId: r.document_id,
+    documentName: r.name,
+    page: r.page,
+    content: r.content,
+    similarity: r.similarity === null ? null : Number(r.similarity),
+  }));
+}
+
+async function sqlSearch(
+  question: string,
+  embedding: number[] | null,
+  documentIds: string[],
+  candidates: number,
+  topK: number,
+): Promise<HitRow[]> {
+  const db = await getDb();
+  return db.query<HitRow>(
     `with scope as (
        select c.* from chunks c
         where c.document_id = any(string_to_array($2, ',')::uuid[])
@@ -98,16 +121,6 @@ export async function searchChunks(
       limit $5`,
     [embedding ? toVector(embedding) : null, documentIds.join(","), keywordQuery(question), candidates, topK],
   );
-
-  return rows.map((r, i) => ({
-    n: i + 1,
-    chunkId: String(r.id),
-    documentId: r.document_id,
-    documentName: r.name,
-    page: r.page,
-    content: r.content,
-    similarity: r.similarity === null ? null : Number(r.similarity),
-  }));
 }
 
 /**

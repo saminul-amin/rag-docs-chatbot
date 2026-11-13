@@ -5,7 +5,7 @@ import type { Passage } from "./retrieve";
 // passages that best match the question and cite them. Nothing is invented, so the
 // answer is always traceable, just less fluent than an AI-written one.
 
-const STOPWORDS = new Set(
+export const STOPWORDS = new Set(
   (
     "a about after all also am an and any are as at be been but by can could did do does " +
     "for from get got had has have how i if in into is it its me my no not of on or our " +
@@ -15,7 +15,7 @@ const STOPWORDS = new Set(
   ).split(" "),
 );
 
-function stem(word: string): string {
+export function stem(word: string): string {
   let w = word.toLowerCase();
   if (w.length > 4 && w.endsWith("ies")) w = w.slice(0, -3) + "y";
   else if (w.length > 3 && w.endsWith("s") && !w.endsWith("ss")) w = w.slice(0, -1);

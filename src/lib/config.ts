@@ -37,6 +37,21 @@ export const config = {
 
   databaseUrl: env("DATABASE_URL"),
 
+  /**
+   * Where documents live:
+   *  - "postgres": DATABASE_URL is set (Neon, Supabase, RDS...). Permanent.
+   *  - "pglite":   embedded WASM Postgres in ./.data. The local-dev default.
+   *  - "memory":   plain in-process JavaScript. The default on Vercel without a
+   *                database: booting PGlite costs ~16 s of CPU per cold start, this
+   *                costs almost nothing. Uploads are temporary either way.
+   */
+  storage: ((): "postgres" | "pglite" | "memory" => {
+    const forced = env("DB_BACKEND");
+    if (forced === "postgres" || forced === "pglite" || forced === "memory") return forced;
+    if (env("DATABASE_URL")) return "postgres";
+    return process.env.VERCEL ? "memory" : "pglite";
+  })(),
+
   retrieval: {
     topK: num("RETRIEVAL_TOP_K", 6),
     candidates: num("RETRIEVAL_CANDIDATES", 24),

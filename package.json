@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/build-samples.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "eval": "tsx --env-file-if-exists=.env.local scripts/eval.ts",
     "sample-docs": "python scripts/make-sample-docs.py",
+    "samples:build": "tsx scripts/build-samples.ts",
     "screenshots": "node scripts/screenshots.mjs"
   },
   "dependencies": {
